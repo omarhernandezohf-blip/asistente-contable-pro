@@ -42,32 +42,34 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     const login = async (email: string, pass: string): Promise<boolean> => {
         // Mock Authentication Logic
         await new Promise(resolve => setTimeout(resolve, 1000)); // Simulate API
+        try {
+            const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+            const res = await fetch(`${API_URL}/api/auth/login`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email, password: pass })
+            });
 
-        let mockUser: User | null = null;
+            if (!res.ok) {
+                console.error("Login failed: Invalid credentials or server error");
+                return false;
+            }
 
-        if ((email === 'admin@premium.com') || (email === 'suitmaxi@premium.com' && pass === 'maxi54321')) {
-            mockUser = {
-                email: 'suitmaxi@premium.com',
-                name: 'Maxi (Creador)',
-                plan: 'premium',
-                avatar: 'https://i.pravatar.cc/150?u=maxi',
-                multiSession: true
+            const userData = await res.json();
+            // Map backend response 'plan' (uppercase) to frontend type (lowercase) if needed
+            const user: User = {
+                ...userData,
+                plan: userData.plan.toLowerCase() as PlanType
             };
-            // NOTE: In a real backend, we would validate the session token here.
-            // Creators like Maxi allow multiple active tokens.
-            // Regular users would invalidate previous tokens upon new login.
-        } else if (email === 'contador@pro.com') {
-            mockUser = { email, name: 'Juan Contador', plan: 'pro', avatar: 'https://i.pravatar.cc/150?u=juan', multiSession: false };
-        } else if (email === 'usuario@inicial.com') {
-            mockUser = { email, name: 'Usuario Nuevo', plan: 'inicial', avatar: 'https://i.pravatar.cc/150?u=new', multiSession: false };
-        } else {
+
+            setUser(user);
+            localStorage.setItem('ac_user', JSON.stringify(user));
+            router.push('/dashboard');
+            return true;
+        } catch (error) {
+            console.error("Login Connection Error:", error);
             return false;
         }
-
-        setUser(mockUser);
-        localStorage.setItem('ac_user', JSON.stringify(mockUser));
-        router.push('/dashboard');
-        return true;
     };
 
     const loginWithGoogle = async () => {
