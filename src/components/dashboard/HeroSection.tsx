@@ -2,8 +2,10 @@
 
 import { motion } from 'framer-motion';
 import { Sparkles, Command, Radio } from 'lucide-react';
+import { useAuth } from '@/context/AuthContext';
 
 export function HeroSection() {
+    const { user } = useAuth();
     return (
         <div className="relative w-full h-[300px] flex items-center justify-between overflow-hidden rounded-3xl bg-slate-950/50 border border-white/5 p-12 mb-8 group">
             {/* Ambient Background Glow */}
@@ -33,7 +35,9 @@ export function HeroSection() {
                     transition={{ duration: 0.8, delay: 0.2 }}
                     className="text-6xl font-bold font-space text-white mb-2 tracking-tight"
                 >
-                    Hola, <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-yellow-100 to-amber-500 filter drop-shadow-[0_0_10px_rgba(251,191,36,0.5)]">Leyenda.</span>
+                    Hola, <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-yellow-100 to-amber-500 filter drop-shadow-[0_0_10px_rgba(251,191,36,0.5)]">
+                        {user?.name?.split(' ')[0] || 'Experto'}.
+                    </span>
                 </motion.h1>
 
                 <motion.p
