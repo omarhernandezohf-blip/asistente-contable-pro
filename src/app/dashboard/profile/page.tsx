@@ -97,7 +97,7 @@ export default function ProfilePage() {
     return (
         <div className="p-6 max-w-5xl mx-auto space-y-8">
             <header className="mb-8">
-                <h1 className="text-3xl font-bold text-white mb-2">Mi Perfil <span className="text-xs bg-rose-500/20 text-rose-300 px-2 py-1 rounded-full border border-rose-500/30 align-middle">v2.2 LOGIN FIX</span></h1>
+                <h1 className="text-3xl font-bold text-white mb-2">Mi Perfil <span className="text-xs bg-rose-500/20 text-rose-300 px-2 py-1 rounded-full border border-rose-500/30 align-middle">v1.0</span></h1>
                 <p className="text-slate-400">Gestiona tu información personal y membresía</p>
             </header>
 
