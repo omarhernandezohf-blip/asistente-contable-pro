@@ -8,6 +8,8 @@ import { useAuth } from '@/context/AuthContext';
 import { Lock, Mail, ChevronRight, AlertCircle, Command } from 'lucide-react';
 import Image from 'next/image';
 
+import { API_URL } from '@/lib/api';
+
 export default function LoginPage() {
     const { login, loginWithGoogle } = useAuth();
     const [email, setEmail] = useState('');
