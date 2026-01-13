@@ -161,6 +161,8 @@ export function Sidebar({ isMobileOpen = false, onCloseMobile }: SidebarProps) {
                         {isExpanded && <span className="text-sm font-medium">Cerrar Sesión</span>}
                     </button>
                 </div>
-            </motion.aside>
-            );
+            </div>
+        </motion.aside >
+        </>
+    );
 }

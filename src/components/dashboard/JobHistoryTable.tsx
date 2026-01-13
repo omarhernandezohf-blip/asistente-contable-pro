@@ -202,5 +202,7 @@ export function JobHistoryTable() {
                     )}
                 </div>
             </div>
-            );
+        </div>
+        </div >
+    );
 }
