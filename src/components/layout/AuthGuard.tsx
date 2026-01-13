@@ -38,8 +38,6 @@ export function AuthGuard({ children }: { children: React.ReactNode }) {
         return null; // AuthContext handles redirect
     }
 
-    const [isMobileOpen, setIsMobileOpen] = useState(false);
-
     return (
         <>
             <StarsBackground />
