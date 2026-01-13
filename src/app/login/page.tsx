@@ -153,6 +153,7 @@ export default function LoginPage() {
                         </div>
                     </div>
 
+
                 </motion.div>
             </div>
         </div>
