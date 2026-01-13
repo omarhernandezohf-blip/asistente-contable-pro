@@ -138,7 +138,7 @@ export const PremiumAvatarFrame = ({
 
                         <span className="relative flex items-center gap-2 px-4 py-1.5 rounded-full bg-gradient-to-b from-slate-900/90 to-black/90 border border-amber-500/30 text-[10px] tracking-widest font-black text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-yellow-100 to-amber-300 shadow-xl backdrop-blur-xl uppercase">
                             <Crown className="w-3 h-3 text-amber-400 fill-amber-400/20" />
-                            Edición Platino
+                            Edición Premium
                         </span>
                     </div>
                 </motion.div>

@@ -22,7 +22,7 @@ export function HeroSection() {
                 >
                     <span className="px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-400 text-xs font-bold tracking-wider uppercase flex items-center gap-2">
                         <Sparkles className="w-3 h-3" />
-                        Edición Platino
+                        Edición Premium
                     </span>
                     <span className="px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-bold tracking-wider uppercase flex items-center gap-2">
                         <Radio className="w-3 h-3 animate-pulse" />
