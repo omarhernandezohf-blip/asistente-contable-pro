@@ -12,6 +12,7 @@ export function AuthGuard({ children }: { children: React.ReactNode }) {
     const { isAuthenticated, user } = useAuth();
     const pathname = usePathname();
     const [mounted, setMounted] = useState(false);
+    const [isMobileOpen, setIsMobileOpen] = useState(false);
 
     useEffect(() => {
         setMounted(true);
