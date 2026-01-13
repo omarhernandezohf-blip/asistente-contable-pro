@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import { useAuth } from '@/context/AuthContext';
 import { User, CreditCard, Calendar, Shield, Save, Camera, Sparkles } from 'lucide-react';
 import { clsx } from 'clsx';
+import { PremiumAvatarFrame } from '@/components/ui/PremiumAvatarFrame';
 
 export default function ProfilePage() {
     const { user, updateUser } = useAuth();
@@ -113,22 +114,17 @@ export default function ProfilePage() {
                         <div className="absolute top-0 right-0 p-32 bg-indigo-500/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
 
                         <div className="flex flex-col sm:flex-row items-center sm:items-start gap-6 relative z-10">
-                            <div className="relative group/avatar">
-                                <div className="w-24 h-24 rounded-full bg-slate-800 border-4 border-slate-900/50 overflow-hidden shadow-xl relative">
-                                    {isProcessing ? (
-                                        <div className="w-full h-full flex items-center justify-center bg-slate-900/80">
-                                            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-indigo-500"></div>
-                                        </div>
-                                    ) : user.avatar ? (
-                                        <img src={user.avatar} alt={user.name} className="w-full h-full object-cover" />
-                                    ) : (
-                                        <div className="w-full h-full flex items-center justify-center bg-indigo-500/20 text-indigo-400">
-                                            <User className="w-10 h-10" />
-                                        </div>
-                                    )}
-                                </div>
+                            <div className="relative pb-8"> {/* Added padding bottom for the badge */}
+                                <PremiumAvatarFrame
+                                    avatarUrl={user.avatar}
+                                    userName={user.name}
+                                    plan={user.plan || 'free'}
+                                    isProcessing={isProcessing}
+                                    onCameraClick={handleCameraClick}
+                                    size="xl"
+                                />
 
-                                {/* Hidden Input */}
+                                {/* Hidden Input remains outside component logic but controlled by ref */}
                                 <input
                                     type="file"
                                     ref={fileInputRef}
@@ -137,17 +133,6 @@ export default function ProfilePage() {
                                     onChange={handleAvatarChange}
                                     style={{ display: 'none' }}
                                 />
-
-                                {/* Visible Trigger Button */}
-                                <button
-                                    onClick={handleCameraClick}
-                                    className="absolute bottom-0 right-0 p-2 rounded-full bg-indigo-600 text-white shadow-lg hover:bg-indigo-500 transition-colors border-2 border-slate-900 z-20 cursor-pointer"
-                                    type="button"
-                                    aria-label="Cambiar foto de perfil"
-                                    disabled={isProcessing}
-                                >
-                                    <Camera className="w-4 h-4" />
-                                </button>
                             </div>
 
                             <div className="flex-1 text-center sm:text-left space-y-4 w-full">
