@@ -181,6 +181,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
             setUser(user);
             localStorage.setItem('ac_user', JSON.stringify(user));
+
+            // Start cloud sync
+            syncWithFirestore(email);
+
             router.push('/dashboard');
             return true;
         } catch (error) {
@@ -218,6 +222,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
             setUser(user);
             localStorage.setItem('ac_user', JSON.stringify(user));
+
+            // Start cloud sync
+            syncWithFirestore(email);
+
             router.push('/dashboard');
         } catch (error) {
             console.error("Google Login Error:", error);
